@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Timer
 
-    let deadline = '2020-03-23';    // время до которого считает таймер
+    let deadline = '2021-03-23';    // время до которого считает таймер
 
     let getTimeRemaining = (endtime) => {                 // endtime - это дата дедлайна
         let t = Date.parse(endtime) - Date.parse(new Date()),  // тут мы вычисляем сколько осталось времени (new Date() - это время сейчас)
