@@ -1,11 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
-
     let tab = document.querySelectorAll('.info-header-tab'), // Тут табы Лечение, Отдых, Природа, Йога
         info = document.querySelector('.info-header'), // Тут все табы (которые в tab)
         tabContent = document.querySelectorAll('.info-tabcontent'); // Информация внутри табов
-
-
     const hideTabContent = (a) => {
         for (let i = a; i < tabContent.length; i++ ) {
             tabContent[i].classList.remove('show');       // Эта функция скрывает все tabContent
@@ -13,16 +10,12 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
     hideTabContent(1);  // Этот вызов (1) функции оставляет только 1 таб (Лечение)
-
-
     const showTabContent = (b) => {
         if (tabContent[b].classList.contains('hide')) {
             tabContent[b].classList.remove('hide');      // Эта функция показывает определенный таб
             tabContent[b].classList.add('show');
         }
     };
-
-
     // Этот обработчик установлен на все табы! Функция внутри него показывает нужный таб
     info.addEventListener('click', (event) => {      // Делегирование событий
         let target = event.target;
@@ -37,4 +30,11 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Timer
+
+    let deadline = '2018-10-21';    // время до которого считает таймер
+
+    const getTimeRemaining = (endtime) => {                 // endtime - это дата дедлайна
+        let t = Date.parse(endtime) - Date.parse(new Date());  // тут мы вычисляем сколько осталось времени (new Date() - это время сейчас)
+    };
 });
