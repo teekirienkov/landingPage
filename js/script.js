@@ -35,6 +35,9 @@ window.addEventListener('DOMContentLoaded', () => {
     let deadline = '2018-10-21';    // время до которого считает таймер
 
     const getTimeRemaining = (endtime) => {                 // endtime - это дата дедлайна
-        let t = Date.parse(endtime) - Date.parse(new Date());  // тут мы вычисляем сколько осталось времени (new Date() - это время сейчас)
-    };
+        let t = Date.parse(endtime) - Date.parse(new Date()),  // тут мы вычисляем сколько осталось времени (new Date() - это время сейчас)
+            seconds = Math.floor((t/1000) % 60),   // Math.floor - округление, далее получаем секунды (получая остаток от деления на 60)
+            minutes = Math.floor((t/1000/60) % 60), // Аналогично, только получаются минуты
+            hours = Math.floor((t/(1000*60*60))); // Получение часов
+        };
 });
