@@ -32,12 +32,40 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Timer
 
-    let deadline = '2018-10-21';    // время до которого считает таймер
+    let deadline = '2020-03-23';    // время до которого считает таймер
 
-    const getTimeRemaining = (endtime) => {                 // endtime - это дата дедлайна
+    let getTimeRemaining = (endtime) => {                 // endtime - это дата дедлайна
         let t = Date.parse(endtime) - Date.parse(new Date()),  // тут мы вычисляем сколько осталось времени (new Date() - это время сейчас)
             seconds = Math.floor((t/1000) % 60),   // Math.floor - округление, далее получаем секунды (получая остаток от деления на 60)
             minutes = Math.floor((t/1000/60) % 60), // Аналогично, только получаются минуты
             hours = Math.floor((t/(1000*60*60))); // Получение часов
+    
+        return {                            // Возвращение объекта (возможно надо удалить)
+            'total'   : t,
+            'hours'   : hours,
+            'minutes' : minutes,
+            'seconds' : seconds
         };
+    };
+    // Функция таймера, в id передается элемент, в endtime передается время
+    const setClock = (id, endtime) => {
+        let timer = document.getElementById(id),
+            hours = timer.querySelector('.hours'),
+            minutes = timer.querySelector('.minutes'),
+            seconds = timer.querySelector('.seconds'),
+            timeInterval = setInterval(updateClock, 1000); // вызывает функцию updateClock каждую секунду
+
+        function updateClock() {     // Эта функция выводит данные в вёрстку
+            let t = getTimeRemaining(endtime);
+            hours.textContent = t.hours;
+            minutes.textContent = t.minutes;
+            seconds.textContent = t.seconds;
+            
+            if (t.total <= 0) {
+                clearInterval(timeInterval);
+            }
+        }
+    };
+
+    setClock('timer', deadline);    // timer это элемент с html страницы! В функции выше это видно
 });
