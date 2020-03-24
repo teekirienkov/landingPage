@@ -82,6 +82,35 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-
     setClock('timer', deadline);    // timer это элемент с html страницы! В функции выше это видно
+
+    // Modal
+
+    let more = document.querySelector('.more'),
+        buttonsMore = document.querySelectorAll('.description-btn'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    more.addEventListener('click', function() {
+        overlay.style.display = 'block';
+
+        this.classList.add('more-splash');    // this создает в этой области класс
+        document.body.style.overflow = 'hidden';
+    });
+    
+    buttonsMore.forEach(function(item){
+        item.addEventListener('click', function() {
+            overlay.style.display = 'block';
+        });
+    });
+    
+    
+    
+    
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    });
 });
