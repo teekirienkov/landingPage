@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
-    let tab = document.querySelectorAll('.info-header-tab'), // Тут табы Лечение, Отдых, Природа, Йога
+    const tab = document.querySelectorAll('.info-header-tab'), // Тут табы Лечение, Отдых, Природа, Йога
         info = document.querySelector('.info-header'), // Тут все табы (которые в tab)
         tabContent = document.querySelectorAll('.info-tabcontent'); // Информация внутри табов
     const hideTabContent = (a) => {
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
     more.addEventListener('click', function() {
         overlay.style.display = 'block';
 
-        this.classList.add('more-splash');    // this создает в этой области класс
+        this.classList.add('more-splash');    // this создает в этой области класс (в more)
         document.body.style.overflow = 'hidden';
     });
     
@@ -103,8 +103,6 @@ window.addEventListener('DOMContentLoaded', () => {
             overlay.style.display = 'block';
         });
     });
-    
-    
     
     
     close.addEventListener('click', function() {
