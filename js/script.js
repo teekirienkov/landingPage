@@ -111,4 +111,14 @@ window.addEventListener('DOMContentLoaded', () => {
         more.classList.remove('more-splash');
         document.body.style.overflow = '';
     });
+
+
+    // Form
+
+    let message = {
+        loading: 'Загрузка...',
+        success: 'Спасибо! Скоро мы с вами свяжемся!',
+        failure: 'Произошла ошибка'
+    };
+    
 });
