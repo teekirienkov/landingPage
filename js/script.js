@@ -134,6 +134,20 @@ window.addEventListener('DOMContentLoaded', () => {
         let request = new XMLHttpRequest();
 
 
-        request.open('POST', 'server.php');
+        request.open('POST', 'server.php'); // 1 параметр - post, 2 параметр - ссылка куда отправляются данные
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        let formData = new FormData(form);
+
+        request.send(formData); // отправка данных
+
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState < 4) {
+                statusMessage.innerHTML = message.loading;
+            } else if (request.readyState === 4 && request.status == 200) {
+                statusMessage.innerHTML = message.success;
+            }
+        });
     });
 });
