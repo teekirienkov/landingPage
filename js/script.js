@@ -120,5 +120,10 @@ window.addEventListener('DOMContentLoaded', () => {
         success: 'Спасибо! Скоро мы с вами свяжемся!',
         failure: 'Произошла ошибка'
     };
-    
+
+    let form = document.querySelector('.main-form'), // получение формы обратной связи
+        input = form.getElementsByTagName('input'),
+        statusMessage = document.createElement('div'); // создание дива с сообщением
+
+        statusMessage.classList.add('status'); // Этот класс уже прописан в css
 });
