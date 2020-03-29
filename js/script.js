@@ -137,11 +137,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
         request.open('POST', 'server.php'); // 1 параметр - post, 2 параметр - ссылка куда отправляются данные
 
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 
         let formData = new FormData(form);
 
-        request.send(formData); // отправка данных
+
+        // Алгоритм для JSON
+        let obj = {};
+        formData.forEach(function(value, key){
+            obj[key] = value;
+        });
+
+        let json = JSON.stringify(obj);
+
+        request.send(json); // отправка данных
 
         request.addEventListener('readystatechange', function() {
             if (request.readyState < 4) {
@@ -153,6 +164,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Очистка инпутов
         for (let i = 0; i < input.length; i++) {
             input[i].value = '';
         }
