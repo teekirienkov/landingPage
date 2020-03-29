@@ -126,4 +126,14 @@ window.addEventListener('DOMContentLoaded', () => {
         statusMessage = document.createElement('div'); // создание дива с сообщением
 
         statusMessage.classList.add('status'); // Этот класс уже прописан в css
+
+    form.addEventListener('submit', function(event) { // submit вешается не на кнопку а на форму!
+        event.preventDefault();                 // отмена перезагрузки страницы при нажатии на кнопку
+        form.appendChild(statusMessage);       // добавление в форму див
+
+        let request = new XMLHttpRequest();
+
+
+        request.open('POST', 'server.php');
+    });
 });
