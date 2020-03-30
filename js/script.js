@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let formData = new FormData(form);
 
 
-        // Алгоритм для JSON
+        // Алгоритм для JSON (универсальный)
         let obj = {};
         formData.forEach(function(value, key){
             obj[key] = value;
