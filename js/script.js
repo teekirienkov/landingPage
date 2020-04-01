@@ -196,62 +196,46 @@ window.addEventListener('DOMContentLoaded', () => {
       prev = document.querySelector('.prev'),
       next = document.querySelector('.next'),
       dotsWrap = document.querySelector('.slider-dots'),
-      dot = document.querySelectorAll('.dot');
+      dots = document.querySelectorAll('.dot');
   
+  function showSlides(n) {
+    // Проверки для корректного переключения последнего слайда на первый и наоборот
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+    // скрываем все слайды со страницы, item - каждый слайд
+    slides.forEach((item) => {
+        item.style.display = 'none';
+    });
+    // тоже самое с точками
+    dots.forEach((item) => {
+        item.classList.remove('dot-active');
+    });
+    // Добавление первой картинки и первой точки
+    // конвертирование в индекс (чтобы сначала был индекс 0)
+    slides[slideIndex - 1].style.display = 'block';
+    dots[slideIndex - 1].classList.add('dot-active');
+  }
 
+  // Функция переключения слайда
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  // Когда кликаем на 4 точку, тут будет 4 слайд
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  // Обработчики событий стрелок
+  prev.addEventListener('click', function() {
+    plusSlides(-1);
+  });
+  next.addEventListener('click', function() {
+    plusSlides(1);
+  });
 
+  showSlides();
 }); // window
-
-
-
-
-
-
-
-
-
-
-
-// Обработчик события XMLHttpRequest без промиса!
-/*
-    form.addEventListener('submit', function(event) { // submit вешается не на кнопку а на форму!
-        event.preventDefault();                 // отмена перезагрузки страницы при нажатии на кнопку
-        form.appendChild(statusMessage);       // добавление в форму див
-
-        let request = new XMLHttpRequest();
-
-
-        request.open('POST', 'server.php'); // 1 параметр - post, 2 параметр - ссылка куда отправляются данные
-
-        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-
-        let formData = new FormData(form);
-
-
-        // Алгоритм для JSON (универсальный)
-        let obj = {};
-        formData.forEach(function(value, key){
-            obj[key] = value;
-        });
-
-        let json = JSON.stringify(obj);
-
-        request.send(json); // отправка данных
-
-        request.addEventListener('readystatechange', function() {
-            if (request.readyState < 4) {
-                statusMessage.innerHTML = message.loading;
-            } else if (request.readyState === 4 && request.status == 200) {
-                statusMessage.innerHTML = message.success;
-            } else {
-                statusMessage.innerHTML = message.failure;
-            }
-        });
-
-        // Очистка инпутов
-        for (let i = 0; i < input.length; i++) {
-            input[i].value = '';
-        }
-*/
