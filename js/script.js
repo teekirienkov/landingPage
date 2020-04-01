@@ -219,6 +219,7 @@ window.addEventListener('DOMContentLoaded', () => {
     slides[slideIndex - 1].style.display = 'block';
     dots[slideIndex - 1].classList.add('dot-active');
   }
+  showSlides();
 
   // Функция переключения слайда
   function plusSlides(n) {
@@ -228,7 +229,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function currentSlide(n) {
     showSlides(slideIndex = n);
   }
-  
+
   // Обработчики событий стрелок
   prev.addEventListener('click', function() {
     plusSlides(-1);
@@ -236,6 +237,15 @@ window.addEventListener('DOMContentLoaded', () => {
   next.addEventListener('click', function() {
     plusSlides(1);
   });
+  
+  // Делегирование событий для точек
+  dotsWrap.addEventListener('click', function(event) {
+    for (let i = 0; i < dots.length + 1; i++) {
+        if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
+            currentSlide(i);
+        }
+    }
+  });
 
-  showSlides();
+  
 }); // window
