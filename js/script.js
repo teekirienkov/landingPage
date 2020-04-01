@@ -183,15 +183,24 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(()=>{
             clearInput();
         });
-      // elem.addEventListener
-      });
-  // sendForm
-  }
-
+      }); // elem.addEventListener
+  } // sendForm
   sendForm(form);
   sendForm(formDown);
-// window
-});
+
+
+  // SLIDER
+  // Получение элементов слайдера
+  let slideIndex = 1,
+      slides = document.querySelectorAll('.slider-item'),
+      prev = document.querySelector('.prev'),
+      next = document.querySelector('.next'),
+      dotsWrap = document.querySelector('.slider-dots'),
+      dot = document.querySelectorAll('.dot');
+  
+
+
+}); // window
 
 
 
@@ -203,7 +212,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+// Обработчик события XMLHttpRequest без промиса!
 /*
     form.addEventListener('submit', function(event) { // submit вешается не на кнопку а на форму!
         event.preventDefault();                 // отмена перезагрузки страницы при нажатии на кнопку
