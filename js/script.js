@@ -126,11 +126,12 @@ window.addEventListener('DOMContentLoaded', () => {
         input = form.getElementsByTagName('input'),
         formDown = document.querySelector('#form'),
         statusMessage = document.createElement('div'); // создание дива с сообщением
+        
         statusMessage.classList.add('status'); // Этот класс уже прописан в css
 
     
-    function sendForm(elem) {
-      elem.addEventListener('submit', function(event) {
+  function sendForm(elem) {
+    elem.addEventListener('submit', function(event) {
         event.preventDefault();
         elem.appendChild(statusMessage);
 
@@ -139,9 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
       function postData() {
         return new Promise(function (resolve, reject) {
           let request = new XMLHttpRequest();
-
-          request.open('POST', 'server.php');
-
+          request.open('POST', 'server.php'); // пост запрос на мой сервер
           request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 
           request.onreadystatechange = function() {
@@ -151,8 +150,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (request.status == 200 && request.status < 300) {
                   resolve();
                 } else {
-                    reject();
-                  }
+                  reject();
+                }
               }
             };
           let obj = {};
@@ -163,13 +162,35 @@ window.addEventListener('DOMContentLoaded', () => {
           request.send(json);
         });
       }
+      // функция чистки инпута
+      function clearInput() {
+        for (let i = 0; i < input.length; i++) {
+          input[i].value = '';
+        }
+      }
+      // Обращение к функции с Промисом и его методы then, catch
 
-
-
-
-
+      postData (formData)
+        .then(() => {
+            statusMessage.innerHTML = message.loading;
+        })
+        .then(() => {
+            statusMessage.innerHTML = message.success;
+        })
+        .catch(() => {
+            statusMessage.innerHTML = message.failure;
+        })
+        .then(()=>{
+            clearInput();
+        });
+      // elem.addEventListener
       });
-    }
+  // sendForm
+  }
+
+  sendForm(form);
+  sendForm(formDown);
+// window
 });
 
 
