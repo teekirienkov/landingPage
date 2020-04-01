@@ -247,5 +247,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // CALCULATOR
+
   
 }); // window
