@@ -200,9 +200,11 @@ window.addEventListener('DOMContentLoaded', () => {
   
   function showSlides(n) {
     // Проверки для корректного переключения последнего слайда на первый и наоборот
+    // Если слайд становится больше чем их есть, то переключается на первый
     if (n > slides.length) {
         slideIndex = 1;
     }
+    // и наоборот
     if (n < 1) {
         slideIndex = slides.length;
     }
@@ -248,7 +250,6 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // CALCULATOR
-
   let persons = document.querySelectorAll('.counter-block-input')[0],
       restDays = document.querySelectorAll('.counter-block-input')[1],
       place = document.getElementById('select'),
@@ -291,6 +292,6 @@ window.addEventListener('DOMContentLoaded', () => {
               let a = total;
               totalValue.innerHTML = a * this.options[this.selectedIndex].value; // получение из чекбокса value
           }
-      });
+      }); // end calculator
 
 }); // window
